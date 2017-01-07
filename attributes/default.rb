@@ -1,7 +1,9 @@
+# rvm_passenger_nginx
 node.default["rvm_passenger_nginx"]["nginx"]["workers"] = 2
 node.default["rvm_passenger_nginx"]["passenger"]["site"]["min_instances"] = 1
 node.default["rvm_passenger_nginx"]["passenger"]["user"] = "webserver"
 node.default["rvm_passenger_nginx"]["passenger"]["group"] = "deploy"
+node.default["rvm_passenger_nginx"]["secret_file"] = "/root/chef_secret"
 
 node.default["rvm_passenger_nginx"]["applications"] = [{
     "name" => "rails_app",
@@ -14,12 +16,35 @@ node.default["rvm_passenger_nginx"]["applications"] = [{
     "secret_key_base" => "e55b4f64180754f4ea2b76663e664e270e793907c44287fb166148eb978c9b6e141a79281690a798cbad60a88d3b6b7b271bed231a88001d4d0aa9238b41c708"
 }]
 
+
 # postgresql cookbook
 node.default['postgresql']['version'] = "9.5"
 node.default['postgresql']['dir'] = '/etc/postgresql/9.5/main'
 node.default['postgresql']['client']['packages'] = ['postgresql-client-9.5', 'libpq-dev']
 node.default['postgresql']['server']['packages'] = ['postgresql-9.5', 'postgresql-9.5-dbg', 'postgresql-server-dev-9.5', 'postgresql-doc-9.5', 'postgresql-pltcl-9.5']
 node.default['postgresql']['contrib']['packages'] = ['postgresql-contrib-9.5']
+
+# # sudo
+# # TODO - makes problems
+# #node.default['authorization']['sudo']['users'] = ["martin", "vagrant"]
+#
+# sshd
+node.default['sshd']['sshd_config']['Port'] = 22
+node.default['sshd']['sshd_config']['PermitRootLogin'] = 'no'
+node.default['sshd']['sshd_config']['PubkeyAuthentication'] = 'yes'
+#node.default['sshd']['sshd_config']['AllowGroups'] = 'sshlogin'
+
+node.default['fail2ban']['services'] = {
+    'ssh' => {
+        "enabled" => "true",
+        "port" => "ssh",
+        "filter" => "sshd",
+        "logpath" => node['fail2ban']['auth_log'],
+        "maxretry" => "6"
+    }
+}
+
+
 
 
 
