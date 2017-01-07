@@ -7,6 +7,7 @@ long_description 'Installs/Configures passenger_ubuntu'
 version '0.1.0'
 
 depends 'rvm_passenger_nginx', '~> 1.0.0'
+depends 'postgresql', '~> 6.0.1'
 
 # If you upload to Supermarket you should set this so your cookbook
 # gets a `View Issues` link

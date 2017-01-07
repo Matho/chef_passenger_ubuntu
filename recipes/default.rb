@@ -6,3 +6,8 @@
 
 include_recipe 'passenger_ubuntu::users'
 include_recipe 'rvm_passenger_nginx::default'
+include_recipe 'postgresql::default'
+include_recipe 'postgresql::server_debian'
+include_recipe 'postgresql::config_initdb'
+include_recipe 'postgresql::contrib'
+
