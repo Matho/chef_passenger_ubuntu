@@ -4,3 +4,4 @@ template '/etc/postgresql/9.5/main/pg_hba.conf' do
   owner 'postgres'
   group 'postgres'
 end
+
