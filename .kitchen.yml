@@ -24,3 +24,6 @@ suites:
       inspec_tests:
         - test/recipes
     attributes:
+      postgresql:
+        password:
+          postgres: '123456'

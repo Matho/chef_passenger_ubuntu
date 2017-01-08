@@ -10,6 +10,7 @@ include_recipe 'postgresql::default'
 include_recipe 'postgresql::server_debian'
 include_recipe 'postgresql::config_initdb'
 include_recipe 'postgresql::contrib'
+include_recipe 'passenger_ubuntu::postgres'
 include_recipe 'monit-ng::default'
 include_recipe "imagemagick"
 include_recipe 'swap_tuning'
