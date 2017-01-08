@@ -27,6 +27,14 @@ file '/home/webserver/.ssh/config' do
   group 'deploy'
 end
 
+file "/home/webserver/chef_secret" do
+  content 'asdasdas1458'
+  mode '0755'
+  owner 'webserver'
+  group 'deploy'
+  action :create
+end
+
 # sudoer user
 group 'sshlogin'
 
@@ -38,9 +46,3 @@ user 'martin' do
   password '$1$afGk7OxQ$SI8Y3uWPjFlOqEof5L7Kv0' # https://docs.chef.io/resource_user.html
 end
 
-file "/root/chef_secret" do
-  content 'asdasdas1458'
-  mode '0755'
-  owner 'webserver'
-  group 'deploy'
-end
