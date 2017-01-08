@@ -1,7 +1,9 @@
 group 'deploy'
+group 'rvm'
 
 user 'webserver' do
   group 'deploy'
+  group 'rvm'
   system true
   home '/home/webserver'
   shell '/bin/bash'
@@ -40,6 +42,7 @@ group 'sshlogin'
 
 user 'martin' do
   group 'sshlogin'
+  group 'rvm'
   system true
   home '/home/martin'
   shell '/bin/bash'
